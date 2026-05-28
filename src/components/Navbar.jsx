@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, User, Layers, Mail, Sparkles } from 'lucide-react';
+import { Home, User, Layers, Mail, Sparkles, Lock } from 'lucide-react';
 
 const navItems = [
   { name: 'Home', path: '/', icon: Home, color: 'from-[#f9bb1a] to-[#ffda6a]', shadow: 'shadow-[#f9bb1a]/20' },
   { name: 'blog', path: '/blog', icon: Layers, color: 'from-[#f9bb1a] to-[#ffda6a]', shadow: 'shadow-[#f9bb1a]/20' },
   { name: 'About', path: '/about', icon: User, color: 'from-[#f9bb1a] to-[#ffda6a]', shadow: 'shadow-[#f9bb1a]/20' },
   { name: 'Contact', path: '/contact', icon: Mail, color: 'from-[#f9bb1a] to-[#ffda6a]', shadow: 'shadow-[#f9bb1a]/20' },
+  { name: 'Login', path: '/login', icon: Lock, color: 'from-[#f9bb1a] to-[#ffda6a]', shadow: 'shadow-[#f9bb1a]/20' },
 ];
 
 const VibrantTopNav = ({ isLightBg = false }) => {

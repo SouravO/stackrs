@@ -7,6 +7,7 @@ import About from './pages/About';
 import Courses from './pages/Courses';
 import Contact from './pages/Contact';
 import Blog from './pages/Blog';
+import Login from './pages/Login';
 
 function AppContent() {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -31,6 +32,7 @@ function AppContent() {
             <Route path="/courses" element={<Courses />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </main>
         <Footer />
