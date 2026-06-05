@@ -250,7 +250,7 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              <span className="text-xs font-semibold text-blue-400 uppercase tracking-widest">Chit Phase IV Now Active</span>
+              <span className="text-xs font-semibold text-blue-400 uppercase tracking-widest">Stackr Savings Slots Now Active</span>
             </motion.div>
 
             <motion.div variants={itemVariants} className="flex items-center gap-2 mb-6">
@@ -268,7 +268,7 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
             </motion.h2>
 
             <motion.p variants={itemVariants} className="text-slate-400 text-base md:text-xl max-w-xl mb-10 leading-relaxed">
-              Commit just <span className="text-white font-semibold underline decoration-[#f2c12e] decoration-2">₹2,000 monthly</span>. Step into highly transparent, provably-fair live cycles to take home a massive pool of <span className="text-[#f2c12e] font-extrabold">₹50,000</span> early. 
+              Pay just <span className="text-white font-semibold underline decoration-[#f2c12e] decoration-2">₹2,000 monthly</span>. Step into highly transparent, provably-fair live cycles to take home a massive pool of <span className="text-[#f2c12e] font-extrabold">₹50,000</span> early. 
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 items-start sm:items-center mb-12">
@@ -300,8 +300,8 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
                 ))}
               </div>
               <div className="flex flex-col">
-                <p className="text-xs text-white font-bold">Over 4.8 Lakhs Pooled Today</p>
-                <p className="text-[11px] text-slate-400 font-medium">Joined by 200+ verified Indian savers</p>
+                <p className="text-xs text-white font-bold">Over 2.5 Lakhs Pooled since Today</p>
+                <p className="text-[11px] text-slate-400 font-medium">Joined by 100+ verified Indian savers</p>
               </div>
             </motion.div>
           </motion.div>
@@ -415,8 +415,8 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
               </div>
               <div className="border-l border-slate-800 h-8" />
               <div>
-                <p className="text-2xl font-black text-emerald-400 font-mono">0ms</p>
-                <p className="text-[11px] text-slate-500 uppercase font-bold tracking-wider">Payout Delay</p>
+                <p className="text-2xl font-black text-emerald-400 font-mono">Same Day</p>
+                <p className="text-[11px] text-slate-500 uppercase font-bold tracking-wider">Payout</p>
               </div>
             </div>
           </div>
@@ -524,7 +524,7 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
               <span className="text-xs font-bold text-[#f2c12e] uppercase tracking-widest">Real Payouts, Proven On-Chain</span>
             </div>
             <h2 className="text-4xl md:text-6xl font-black tracking-tight">
-              Meet Our <span className="text-[#f2c12e]">Latest Winners</span>
+              Upcoming <span className="text-[#f2c12e]">Winners</span>
             </h2>
             <p className="text-slate-400 mt-4 max-w-xl mx-auto text-base md:text-lg">
               No guesswork. Regular transparent cycles distributing funds instantly into bank accounts.
