@@ -200,30 +200,30 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
 
   const winners = [
     {
-      name: "Aravind Sharma",
-      location: "Bengaluru",
+      name: "Winner1",
+      location: "Calicut",
       amount: "₹50,000",
-      cycle: "Pool #082",
-      month: "Month 3 Draw",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&fit=crop&auto=format&q=80",
-      quote: "Stackr completely changed how I look at chit funds. Transparent, automatic, and I got my payout right when my business needed it."
+      cycle: "Pool #001",
+      month: "Month 1 Draw",
+      image: "/avatar1.png",
+      quote: "Stackr completely changed how I look at Savingss. Transparent, automatic, and I got my payout right when my business needed it."
     },
     {
-      name: "Priya Patel",
-      location: "Mumbai",
+      name: "Winner2",
+      location: "Calicut",
       amount: "₹50,000",
-      cycle: "Pool #089",
+      cycle: "Pool #001",
       month: "Month 2 Draw",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&fit=crop&auto=format&q=80",
+      image: "/avatar2.png",
       quote: "Super skeptical at first, but watching the provably-fair draw live blew me away. Got the full pool early to clear my college semester dues!"
     },
     {
-      name: "Rohan Malhotra",
-      location: "Delhi NCR",
+      name: "Winner3",
+      location: "Calicut",
       amount: "₹50,000",
-      cycle: "Pool #091",
-      month: "Month 4 Draw",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&fit=crop&auto=format&q=80",
+      cycle: "Pool #001",
+      month: "Month 3 Draw",
+      image: "/avatar3.png",
       quote: "Saving ₹2,000 a month felt effortless. Winning the draw gave me a massive lump sum to upgrade my tech setup without any heavy loans."
     }
   ];
