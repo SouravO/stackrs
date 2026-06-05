@@ -378,7 +378,7 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
                 </div>
                 <div className="flex justify-between text-slate-400">
                   <span>Next Automated Draw</span>
-                  <span className="text-white font-mono font-bold">01 Jun 2026</span>
+                  <span className="text-white font-mono font-bold">10 Jun 2026</span>
                 </div>
               </div>
 
