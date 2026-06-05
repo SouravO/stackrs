@@ -255,7 +255,7 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
 
             <motion.div variants={itemVariants} className="flex items-center gap-3 mb-6">
   <img
-    src="/stackr-logo.png"
+    src="/stackr-logo.png.png"
     alt="Stackr"
     className="h-14 w-auto"
   />
