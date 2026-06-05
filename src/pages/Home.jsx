@@ -257,7 +257,7 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
   <img
     src="/stackr-logo.png.png"
     alt="Stackr"
-    className="h-14 w-auto"
+    className="h-20 w-auto"
   />
 </motion.div>
 
