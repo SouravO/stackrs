@@ -273,7 +273,7 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
 
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 items-start sm:items-center mb-12">
               <motion.button
-  onClick={() => window.open("https://tally.so/r/dWQL6N", "_blank")}
+  onClick={() => window.location.href = "https://tally.so/r/dWQL6N"}
   whileHover={{
     scale: 1.04,
     backgroundColor: "#e2b122",
