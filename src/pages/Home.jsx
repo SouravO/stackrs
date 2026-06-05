@@ -273,7 +273,14 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
 
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 items-start sm:items-center mb-12">
               <motion.button
-  onClick={() => window.location.href = "https://tally.so/r/dWQL6N"}
+  onClick={() => window.open("https://tally.so/r/dWQL6N", "_blank")}
+  whileHover={{
+    scale: 1.04,
+    backgroundColor: "#e2b122",
+    boxShadow: "0 15px 30px -5px rgba(242,193,46,0.4)"
+  }}
+  whileTap={{ scale: 0.97 }}
+  className="w-full sm:w-auto bg-[#f2c12e] text-black font-bold px-8 py-4 rounded-2xl"
 >
   Secure My Slot
 </motion.button>
