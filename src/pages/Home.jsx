@@ -314,7 +314,7 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
               <div className="flex justify-between items-center mb-6 border-b border-slate-800/60 pb-4">
                 <div className="flex items-center gap-2">
                   <div className="bg-[#f2c12e] w-5 h-5 rounded-md text-[11px] font-black text-black flex items-center justify-center shadow-md">S</div>
-                  <span className="text-sm font-black tracking-wider text-slate-200">STACKR ESCROW</span>
+                  <span className="text-sm font-black tracking-wider text-slate-200">STACKR LIVE DRAW</span>
                 </div>
                 <div className="flex items-center gap-1.5 bg-emerald-500/10 px-2.5 py-1 rounded-md border border-emerald-500/20">
                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
