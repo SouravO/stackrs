@@ -253,10 +253,13 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
               <span className="text-xs font-semibold text-blue-400 uppercase tracking-widest">Stackr Savings Slots Now Active</span>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="flex items-center gap-2 mb-6">
-              <div className="bg-[#f2c12e] text-[#02091d] font-black p-2.5 rounded-xl text-2xl tracking-tighter shadow-[0_0_25px_rgba(242,193,46,0.3)] animate-pulse">S</div>
-              <span className="text-3xl font-extrabold tracking-tight text-white">Stackr<span className="text-[#f2c12e]">.</span></span>
-            </motion.div>
+            <motion.div variants={itemVariants} className="flex items-center gap-3 mb-6">
+  <img
+    src="/stackr-logo.png"
+    alt="Stackr"
+    className="h-14 w-auto"
+  />
+</motion.div>
 
             <motion.h1 variants={itemVariants} className="text-5xl md:text-8xl font-black tracking-tight leading-[1.05] text-white mb-6">
               Save Small. <br />
