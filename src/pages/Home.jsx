@@ -264,7 +264,7 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
             </motion.h1>
             
             <motion.h2 variants={itemVariants} className="text-xl md:text-2xl font-bold text-slate-200 tracking-wide mb-4 flex items-center gap-2">
-              The Ultimate Gamified Rosca Savings Network.
+              The Ultimate Forced Savings Network.
             </motion.h2>
 
             <motion.p variants={itemVariants} className="text-slate-400 text-base md:text-xl max-w-xl mb-10 leading-relaxed">
