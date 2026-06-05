@@ -272,12 +272,11 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 items-start sm:items-center mb-12">
-              <motion.button onClick={onJoinClick} whileHover={{ scale: 1.04, backgroundColor: "#e2b122", boxShadow: "0 15px 30px -5px rgba(242,193,46,0.4)" }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto bg-[#f2c12e] text-[#02091d] font-extrabold px-8 py-4.5 rounded-xl flex items-center justify-center gap-3 transition-colors duration-200 text-lg shadow-lg">
-                Secure My Slot
-                <svg className="w-5 h-5 stroke-[3]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
-              </motion.button>
+              <motion.button
+  onClick={() => window.location.href = "https://tally.so/r/dWQL6N"}
+>
+  Secure My Slot
+</motion.button>
               
               <motion.button onClick={onWatchDrawClick} whileHover={{ scale: 1.04, borderColor: "rgba(255,255,255,0.6)", backgroundColor: "rgba(255,255,255,0.05)" }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto bg-transparent text-white font-bold px-7 py-4.5 rounded-xl border-2 border-slate-700 transition-all duration-200 flex items-center justify-center gap-3 group">
                 <svg className="w-5 h-5 text-slate-400 group-hover:text-[#f2c12e] group-hover:scale-110 transition-transform fill-none stroke-current" viewBox="0 0 24 24">
