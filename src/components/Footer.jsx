@@ -85,10 +85,7 @@ const Footer = ({ scrollToSection }) => {
         </motion.div>
 
         <motion.button
-          onClick={() => {
-            const element = document.getElementById('waitlist');
-            if (element) element.scrollIntoView({ behavior: 'smooth' });
-          }}
+          onClick={() => { window.location.href = 'https://tally.so/r/dWQL6N'; }}
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.98 }}
           className="px-10 py-4 bg-[#FFC700] text-black hover:bg-amber-400 font-black text-xs uppercase tracking-wider rounded-xl transition-all shadow-xl shadow-[#FFC700]/5 flex items-center gap-2 mx-auto"

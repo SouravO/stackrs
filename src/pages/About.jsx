@@ -40,6 +40,9 @@ const StackrLanding = () => {
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center">
         <div>
+          <div className="flex items-center gap-3 mb-6">
+            <img src="/1111.png" alt="Stackr" className="h-[7.5rem] w-auto" />
+          </div>
           <div className="inline-block bg-white/5 border border-white/10 px-4 py-1 rounded-full text-xs font-medium text-[#f9bb1a] mb-4">
             Transparent. Fair. Boring on purpose.
           </div>
@@ -50,7 +53,7 @@ const StackrLanding = () => {
             A smarter, predictable way to save together. Contribute ₹2,000 monthly, participate in verifiable live draws, and receive a payout of ₹50,000.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <button className="bg-[#f9bb1a] text-black px-8 py-4 rounded-full font-bold hover:bg-yellow-400 transition-colors text-center">
+            <button onClick={() => window.location.href = 'https://tally.so/r/dWQL6N'} className="bg-[#f9bb1a] text-black px-8 py-4 rounded-full font-bold hover:bg-yellow-400 transition-colors text-center">
               Join Stackr Now →
             </button>
             <button className="border border-white/20 px-8 py-4 rounded-full font-bold hover:bg-white/10 transition-colors text-center">

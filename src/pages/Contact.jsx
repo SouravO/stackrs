@@ -73,6 +73,9 @@ const StackrContactPortal = () => {
           ))}
         </motion.div>
 
+        <div className="flex items-center justify-center mb-4 z-10">
+          <img src="/1111.png" alt="Stackr" className="h-[7.5rem] w-auto" />
+        </div>
         <motion.div 
           initial={{ y: 30, opacity: 0 }} 
           animate={{ y: 0, opacity: 1 }}
@@ -195,7 +198,8 @@ const StackrContactPortal = () => {
                     </div>
 
                     <button 
-                      type="submit"
+                      type="button"
+                      onClick={() => window.location.href = 'https://tally.so/r/dWQL6N'}
                       onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}
                       className="w-full bg-[#FFC700] text-black font-black py-4 rounded-xl shadow-xl shadow-[#FFC700]/5 hover:bg-amber-400 transition-all text-xs uppercase tracking-wider flex items-center justify-center gap-2 group"
                     >
