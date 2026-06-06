@@ -255,7 +255,7 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
 
             <motion.div variants={itemVariants} className="flex items-center gap-3 mb-6">
   <img
-    src="/stackr-logo.png.png"
+    src="/1111.png"
     alt="Stackr"
     className="h-46 w-auto"
   />
@@ -413,7 +413,7 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
               The Live <span className="text-[#f2c12e]">Lot Room</span>
             </h3>
             <p className="text-slate-400 text-sm md:text-base leading-relaxed max-w-md mx-auto lg:mx-0">
-              No behind-the-door decisions. When the timer strikes zero, an encrypted decentralized poll selects the winning Unique Chit ID live. Watch the ticket visualizer cycle through transparent allocations.
+              No behind-the-door decisions. When the timer strikes zero, an encrypted decentralized poll selects the winning Unique ID live. Watch the ticket visualizer cycle through transparent allocations.
             </p>
 
             {/* Quick Micro Statistics */}
