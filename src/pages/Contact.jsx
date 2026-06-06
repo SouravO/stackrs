@@ -74,7 +74,7 @@ const StackrContactPortal = () => {
         </motion.div>
 
         <div className="flex items-center justify-center mb-4 z-10">
-          <img src="/1111.png" alt="Stackr" className="h-[7.5rem] w-auto" />
+          <img src="/stackr-logo.png.png" alt="Stackr" className="h-[7.5rem] w-auto" />
         </div>
         <motion.div 
           initial={{ y: 30, opacity: 0 }} 

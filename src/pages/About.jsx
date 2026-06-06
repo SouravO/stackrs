@@ -41,7 +41,7 @@ const StackrLanding = () => {
       <section className="max-w-7xl mx-auto px-6 md:px-10 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center">
         <div>
           <div className="flex items-center gap-3 mb-6">
-            <img src="/1111.png" alt="Stackr" className="h-[7.5rem] w-auto" />
+            <img src="/stackr-logo.png.png" alt="Stackr" className="h-[7.5rem] w-auto" />
           </div>
           <div className="inline-block bg-white/5 border border-white/10 px-4 py-1 rounded-full text-xs font-medium text-[#f9bb1a] mb-4">
             Transparent. Fair. Boring on purpose.

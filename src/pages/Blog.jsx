@@ -178,7 +178,7 @@ export default function HowItWorks() {
         >
           <div className="lg:col-span-7 text-left">
             <div className="flex items-center gap-3 mb-4">
-              <img src="/1111.png" alt="Stackr" className="h-[7.5rem] w-auto" />
+              <img src="/stackr-logo.png.png" alt="Stackr" className="h-[7.5rem] w-auto" />
             </div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold tracking-widest uppercase mb-4 animate-bounce">
               <Trophy className="w-3.5 h-3.5" /> High-Yield Game Theory Mechanics
