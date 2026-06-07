@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -8,12 +9,12 @@ import Courses from './pages/Courses';
 import Contact from './pages/Contact';
 import Blog from './pages/Blog';
 import Login from './pages/Login';
+import SetPassword from './pages/SetPassword';
 
 function AppContent() {
   const [showNavbar, setShowNavbar] = useState(false);
   const location = useLocation();
 
-  // Reset navbar visibility when route changes
   useEffect(() => {
     if (location.pathname !== '/') {
       setShowNavbar(true);
@@ -33,6 +34,7 @@ function AppContent() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/set-password" element={<SetPassword />} />
           </Routes>
         </main>
         <Footer />
@@ -43,7 +45,9 @@ function AppContent() {
 function App() {
   return (
     <Router>
-      <AppContent />
+      <AuthProvider>
+        <AppContent />
+      </AuthProvider>
     </Router>
   );
 }

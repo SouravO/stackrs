@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
+import { useAuth } from '../context/AuthContext';
 
 export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
+  const { user } = useAuth();
+  const displayName = user?.user_metadata?.full_name || user?.user_metadata?.name || '';
   const canvasRef = useRef(null);
   const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0);
   const [countdownValues, setCountdownValues] = useState({
@@ -236,6 +239,19 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
         className="relative text-white pt-32 pb-24 px-4 md:px-12 lg:px-20 min-h-screen flex items-center select-none"
       >
         <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-0" />
+
+        {user && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="absolute top-8 left-1/2 -translate-x-1/2 z-20 bg-gradient-to-r from-[#f2c12e]/20 to-[#f2c12e]/5 border border-[#f2c12e]/30 backdrop-blur-xl px-6 py-3 rounded-2xl"
+          >
+            <p className="text-white text-sm font-bold text-center">
+              Welcome back, <span className="text-[#f2c12e]">{displayName}</span>
+              <span className="text-slate-400 font-normal">  |  Your account is active</span>
+            </p>
+          </motion.div>
+        )}
 
         <motion.div style={{ y: backgroundY, opacity: opacityFade }} className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#0c152b_1px,transparent_1px),linear-gradient(to_bottom,#0c152b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-60" />

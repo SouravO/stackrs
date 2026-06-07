@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { User, Mail, Phone, Lock, ArrowRight } from "lucide-react";
 import { supabase } from "../lib/supabase";
 
+const API = import.meta.env.VITE_API_URL;
+
 const Login = () => {
+  const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
   const [showOTP, setShowOTP] = useState(false);
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -34,7 +38,6 @@ const Login = () => {
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate email
     if (!formData.email || !formData.name || !formData.phone) {
       alert("Please fill in all fields");
       return;
@@ -43,31 +46,26 @@ const Login = () => {
     setLoading(true);
 
     try {
-      // Send OTP to email using Supabase
-      const { error } = await supabase.auth.signInWithOtp({
-        email: formData.email,
-        options: {
-          shouldCreateUser: true,
-          data: {
-            full_name: formData.name,
-            phone: formData.phone,
-          },
-        },
+      const res = await fetch(`${API}/api/auth/signup`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: formData.email,
+          name: formData.name,
+          phone: formData.phone,
+        }),
       });
 
-      if (error) {
-        console.error("OTP Error:", error);
-        throw new Error(error.message || "Failed to send OTP");
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to send OTP");
       }
 
-      console.log("✅ OTP sent successfully to:", formData.email);
       setShowOTP(true);
     } catch (error) {
       console.error("Error:", error);
-      alert(
-        error.message ||
-          "Error sending OTP. Make sure you configured Supabase email provider.",
-      );
+      alert(error.message || "Error sending OTP");
     } finally {
       setLoading(false);
     }
@@ -86,22 +84,28 @@ const Login = () => {
         return;
       }
 
-      const { data, error } = await supabase.auth.verifyOtp({
-        email: formData.email,
-        token: enteredOtp,
-        type: "signup",
+      const res = await fetch(`${API}/api/auth/verify`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: formData.email,
+          token: enteredOtp,
+        }),
       });
 
-      if (error) throw error;
+      const data = await res.json();
 
-      console.log("✅ OTP verified successfully!", data);
-      alert("Account created and verified successfully! You can now log in.");
+      if (!res.ok) {
+        throw new Error(data.error || "Verification failed");
+      }
 
-      // Reset form and switch to login
-      setShowOTP(false);
-      setOtp(["", "", "", "", "", ""]);
-      setFormData({ name: "", phone: "", email: "", password: "" });
-      setIsLogin(true);
+      const { error: sessionError } = await supabase.auth.setSession(data.session);
+      if (sessionError) throw sessionError;
+
+      navigate("/set-password", {
+        state: { email: formData.email },
+        replace: true,
+      });
     } catch (error) {
       console.error("Verification error:", error);
       alert(error.message || "Verification failed. Please check the OTP code.");
@@ -119,7 +123,7 @@ const Login = () => {
         password: formData.password,
       });
       if (error) throw error;
-      alert("Login successful!");
+      navigate("/", { replace: true });
     } catch (error) {
       alert(error.message);
     } finally {
