@@ -301,7 +301,7 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
   whileTap={{ scale: 0.97 }}
   className="w-full sm:w-auto bg-[#f2c12e] text-black font-bold px-8 py-4 rounded-2xl"
 >
-  Secure My Slot
+  Join Now
 </motion.button>
               
               <motion.button onClick={onWatchDrawClick} whileHover={{ scale: 1.04, borderColor: "rgba(255,255,255,0.6)", backgroundColor: "rgba(255,255,255,0.05)" }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto bg-transparent text-white font-bold px-7 py-4.5 rounded-xl border-2 border-slate-700 transition-all duration-200 flex items-center justify-center gap-3 group">
