@@ -22,7 +22,7 @@ function AppContent() {
     } else {
       setShowNavbar(false);
     }
-  }, [location.pathname]);x
+  }, [location.pathname]);
 
   return (
     <div className="flex flex-col min-h-screen w-full">
