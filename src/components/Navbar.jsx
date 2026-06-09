@@ -15,6 +15,7 @@ import { useAuth } from '../context/AuthContext';
 
 const VibrantTopNav = ({ isLightBg = false }) => {
   const [hovered, setHovered] = useState(null);
+  const [loginHovered, setLoginHovered] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { user, signOut } = useAuth();
@@ -26,7 +27,7 @@ const VibrantTopNav = ({ isLightBg = false }) => {
 
   const navItems = [
     { name: 'Home', path: '/', icon: Home },
-    { name: 'Blog', path: '/blog', icon: Layers },
+    { name: 'Benefits', path: '/blog', icon: Layers },
     { name: 'About', path: '/about', icon: User },
     { name: 'Contact', path: '/contact', icon: Mail },
   ];
@@ -136,7 +137,8 @@ const VibrantTopNav = ({ isLightBg = false }) => {
         ) : (
           <Link
             to="/login"
-            onMouseEnter={() => setHovered(null)}
+            onMouseEnter={() => { setHovered(null); setLoginHovered(true); }}
+            onMouseLeave={() => setLoginHovered(false)}
             className="relative z-10 w-14 h-11 flex flex-col items-center justify-center group"
           >
             <motion.div
@@ -146,14 +148,16 @@ const VibrantTopNav = ({ isLightBg = false }) => {
               <LogIn size={20} />
             </motion.div>
             <AnimatePresence>
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 15 }}
-                exit={{ opacity: 0, y: -10 }}
-                className="absolute top-full mt-2 px-3 py-1.5 rounded-lg bg-[#121c31] text-white text-[9px] font-black uppercase tracking-widest shadow-2xl border border-white/10 whitespace-nowrap z-50"
-              >
-                <span className="text-[#f9bb1a]">Login</span>
-              </motion.div>
+              {loginHovered && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 15 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="absolute top-full mt-2 px-3 py-1.5 rounded-lg bg-[#121c31] text-white text-[9px] font-black uppercase tracking-widest shadow-2xl border border-white/10 whitespace-nowrap z-50"
+                >
+                  <span className="text-[#f9bb1a]">Login</span>
+                </motion.div>
+              )}
             </AnimatePresence>
             {location.pathname === '/login' && (
               <motion.div 
