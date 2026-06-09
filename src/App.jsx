@@ -10,6 +10,7 @@ import Contact from './pages/Contact';
 import Blog from './pages/Blog';
 import Login from './pages/Login';
 import SetPassword from './pages/SetPassword';
+import LiveDraw from './pages/LiveDraw';
 
 function AppContent() {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -21,7 +22,7 @@ function AppContent() {
     } else {
       setShowNavbar(false);
     }
-  }, [location.pathname]);
+  }, [location.pathname]);x
 
   return (
     <div className="flex flex-col min-h-screen w-full">
@@ -35,6 +36,7 @@ function AppContent() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/login" element={<Login />} />
             <Route path="/set-password" element={<SetPassword />} />
+            <Route path="/live-draw" element={<LiveDraw />} />
           </Routes>
         </main>
         <Footer />
