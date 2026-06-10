@@ -4,7 +4,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { User, Mail, Phone, Lock, ArrowRight } from "lucide-react";
 import { supabase } from "../lib/supabase";
 
-const API = import.meta.env.VITE_API_URL;
+const url = window.location.href;
+const domain = new URL(url).hostname;
+
+const API = "http://"+domain+":3000"
 
 const Login = () => {
   const navigate = useNavigate();

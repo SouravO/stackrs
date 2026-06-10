@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, User, Layers, Mail, Sparkles, LogIn, LogOut } from 'lucide-react';
+import { Home, User, Layers, Mail, Sparkles, LogIn, LogOut, Lock } from 'lucide-react';
 
 const navItems = [
   { name: 'Home', path: '/', icon: Home, color: 'from-[#f9bb1a] to-[#ffda6a]', shadow: 'shadow-[#f9bb1a]/20' },
