@@ -304,7 +304,7 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
   Join Now
 </motion.button>
               
-              <motion.button onClick={onWatchDrawClick} whileHover={{ scale: 1.04, borderColor: "rgba(255,255,255,0.6)", backgroundColor: "rgba(255,255,255,0.05)" }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto bg-transparent text-white font-bold px-7 py-4.5 rounded-xl border-2 border-slate-700 transition-all duration-200 flex items-center justify-center gap-3 group">
+              <motion.button onClick={() => window.open ('https://youtube.com/live/oji3H3snGQc?feature=share', '_blank', 'noopener,noreferrer')} whileHover={{ scale: 1.04, borderColor: "rgba(255,255,255,0.6)", backgroundColor: "rgba(255,255,255,0.05)" }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto bg-transparent text-white font-bold px-7 py-4.5 rounded-xl border-2 border-slate-700 transition-all duration-200 flex items-center justify-center gap-3 group">
                 <svg className="w-5 h-5 text-slate-400 group-hover:text-[#f2c12e] group-hover:scale-110 transition-transform fill-none stroke-current" viewBox="0 0 24 24">
                   <circle cx="12" cy="12" r="10" strokeWidth="2"/>
                   <path d="M10 8l6 4-6 4V8z" fill="currentColor"/>
