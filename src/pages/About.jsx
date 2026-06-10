@@ -94,7 +94,7 @@ const StackrLanding = () => {
       {/* Circle Rules / Mechanics */}
       <section id="how-it-works" className="max-w-7xl mx-auto px-6 md:px-10 py-12">
         <div className="bg-[#121c31]/50 border border-white/5 rounded-3xl p-8 md:p-12">
-          <h2 className="text-3xl font-bold mb-2">No fine print.</h2>
+          <h2 className="text-3xl font-bold mb-2">How it Works.</h2>
           <p className="text-sm opacity-60 mb-8">Exactly how every Stackr circle operates:</p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {rules.map((rule, idx) => (
