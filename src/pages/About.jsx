@@ -28,9 +28,9 @@ const StackrLanding = () => {
 
   const rules = [
     { title: "Fixed Membership", value: "Exactly 200 members per circle." },
-    { title: "Contribution", value: "₹2,000 auto-debited on the 1st of every month." },
+    { title: "Contribution", value: "₹2,000 paid every month on or before 10th of every month." },
     { title: "Duration", value: "Runs for 25 consecutive months." },
-    { title: "Eligibility", value: "Missed contributions forfeit eligibility for that month's draw." },
+    { title: "Total Payout", value: "Total amount saved for 25 Months will be returned on 25th Month to the members." },
   ];
 
   return (
