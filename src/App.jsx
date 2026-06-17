@@ -11,6 +11,10 @@ import Blog from './pages/Blog';
 import Login from './pages/Login';
 import SetPassword from './pages/SetPassword';
 import LiveDraw from './pages/LiveDraw';
+import AdminRoute from './components/AdminRoute';
+import AdminDashboard from './pages/admin/Dashboard';
+import AdminUsers from './pages/admin/Users';
+import AdminUserDetail from './pages/admin/UserDetail';
 
 function AppContent() {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -37,6 +41,9 @@ function AppContent() {
             <Route path="/login" element={<Login />} />
             <Route path="/set-password" element={<SetPassword />} />
             <Route path="/live-draw" element={<LiveDraw />} />
+            <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+            <Route path="/admin/users" element={<AdminRoute><AdminUsers /></AdminRoute>} />
+            <Route path="/admin/users/:id" element={<AdminRoute><AdminUserDetail /></AdminRoute>} />
           </Routes>
         </main>
         <Footer />

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, User, Layers, Mail, Sparkles, LogIn, LogOut, Lock } from 'lucide-react';
+import { Home, User, Layers, Mail, Sparkles, LogIn, LogOut, Lock, Shield } from 'lucide-react';
 
 const navItems = [
   { name: 'Home', path: '/', icon: Home, color: 'from-[#f9bb1a] to-[#ffda6a]', shadow: 'shadow-[#f9bb1a]/20' },
@@ -109,6 +109,24 @@ const VibrantTopNav = ({ isLightBg = false }) => {
             </Link>
           );
         })}
+
+        {user?.role === 'ADMIN' && (
+          <>
+            <Link
+              to="/admin/dashboard"
+              onMouseEnter={() => setHovered(null)}
+              className="relative z-10 w-14 h-11 flex flex-col items-center justify-center group"
+            >
+              <motion.div
+                animate={{ color: location.pathname.startsWith('/admin') ? '#f9bb1a' : 'rgba(255, 255, 255, 0.6)' }}
+                className="flex items-center justify-center"
+              >
+                <Shield size={20} />
+              </motion.div>
+            </Link>
+            <div className="w-[1px] h-6 rounded-full bg-white/10" />
+          </>
+        )}
 
         {user ? (
           <div className="flex items-center gap-2">

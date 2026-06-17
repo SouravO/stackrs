@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { User, Mail, Phone, Lock, ArrowRight } from "lucide-react";
 import { supabase } from "../lib/supabase";
+import { useAuth } from "../context/AuthContext";
 
 const url = window.location.href;
 const domain = new URL(url).hostname;
@@ -11,6 +12,7 @@ const API = "http://"+domain+":3000"
 
 const Login = () => {
   const navigate = useNavigate();
+  const { user, updateUser, enrichWithRole } = useAuth();
   const [isLogin, setIsLogin] = useState(true);
   const [showOTP, setShowOTP] = useState(false);
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -126,6 +128,19 @@ const Login = () => {
         password: formData.password,
       });
       if (error) throw error;
+
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session?.user) {
+        const enriched = await enrichWithRole(session.user);
+        updateUser(enriched);
+        if (enriched?.role === 'ADMIN') {
+          navigate("/admin/dashboard", { replace: true });
+        } else {
+          navigate("/", { replace: true });
+        }
+        return;
+      }
+
       navigate("/", { replace: true });
     } catch (error) {
       alert(error.message);

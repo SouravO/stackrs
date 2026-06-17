@@ -1,5 +1,9 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import { supabase } from '../lib/supabase';
+
+const url = window.location.href;
+const domain = new URL(url).hostname;
+const API = "http://"+domain+":3000";
 
 const AuthContext = createContext(null);
 
@@ -8,21 +12,57 @@ export function AuthProvider({ children }) {
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const updateUser = useCallback((updates) => {
+    setUser(prev => prev ? { ...prev, ...updates } : prev);
+  }, []);
+
+  async function enrichWithRole(supabaseUser) {
+    if (!supabaseUser) return null;
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session?.access_token) return { ...supabaseUser, role: 'NORMAL_USER' };
+
+      const res = await fetch(`${API}/api/auth/me`, {
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      });
+
+      if (!res.ok) return { ...supabaseUser, role: 'NORMAL_USER' };
+
+      const data = await res.json();
+      return { ...supabaseUser, ...data.user, role: data.user.role || 'NORMAL_USER' };
+    } catch {
+      return { ...supabaseUser, role: 'NORMAL_USER' };
+    }
+  }
+
   useEffect(() => {
     supabase.auth.getSession()
-      .then(({ data: { session } }) => {
+      .then(async ({ data: { session } }) => {
         setSession(session);
-        setUser(session?.user ?? null);
+        if (session?.user) {
+          const enriched = await enrichWithRole(session.user);
+          setUser(enriched);
+        } else {
+          setUser(null);
+        }
+        setLoading(false);
       })
       .catch(() => {
         setSession(null);
         setUser(null);
-      })
-      .finally(() => setLoading(false));
+        setLoading(false);
+      });
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
-      setUser(session?.user ?? null);
+      if (session?.user) {
+        setUser(prev => {
+          if (!prev) return session.user;
+          return { ...session.user, role: prev.role };
+        });
+      } else {
+        setUser(null);
+      }
     });
 
     return () => subscription.unsubscribe();
@@ -33,7 +73,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, session, loading, signOut }}>
+    <AuthContext.Provider value={{ user, session, loading, signOut, updateUser, enrichWithRole }}>
       {children}
     </AuthContext.Provider>
   );
