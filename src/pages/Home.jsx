@@ -6,7 +6,7 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
   const { user } = useAuth();
   const displayName = user?.user_metadata?.full_name || user?.user_metadata?.name || '';
   const canvasRef = useRef(null);
-  const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0);
+
   const [countdownValues, setCountdownValues] = useState({
     days: 0,
     hours: 0,
@@ -142,14 +142,7 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
     return () => clearInterval(loopInterval);
   }, []);
 
-  // Auto-slide testimonials every 5 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTestimonialIndex((prev) => (prev + 1) % 3);
-    }, 5000);
 
-    return () => clearInterval(interval);
-  }, []);
 
   // Calculate countdown to 10th of next month at 12 PM
   useEffect(() => {
@@ -201,35 +194,15 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
     }
   };
 
-  const winners = [
-    {
-      name: "Winner1",
-      location: "Calicut",
-      amount: "₹50,000",
-      cycle: "Pool #001",
-      month: "Month 1 Draw",
-      image: "/avatar1.png",
-      quote: "Stackr completely changed how I look at Savingss. Transparent, automatic, and I got my payout right when my business needed it."
-    },
-    {
-      name: "Winner2",
-      location: "Calicut",
-      amount: "₹50,000",
-      cycle: "Pool #001",
-      month: "Month 2 Draw",
-      image: "/avatar2.png",
-      quote: "Super skeptical at first, but watching the provably-fair draw live blew me away. Got the full pool early to clear my college semester dues!"
-    },
-    {
-      name: "Winner3",
-      location: "Calicut",
-      amount: "₹50,000",
-      cycle: "Pool #001",
-      month: "Month 3 Draw",
-      image: "/avatar3.png",
-      quote: "Saving ₹2,000 a month felt effortless. Winning the draw gave me a massive lump sum to upgrade my tech setup without any heavy loans."
-    }
-  ];
+  const winner = {
+    name: "Winner1",
+    location: "Calicut",
+    amount: "₹50,000",
+    cycle: "Pool #001",
+    month: "Month 1 Draw",
+    image: "/winner.jpeg",
+    quote: "Stackr completely changed how I look at Savingss. Transparent, automatic, and I got my payout right when my business needed it."
+  };
 
   return (
     <div className="bg-[#010614] overflow-hidden">
@@ -549,7 +522,7 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
               <span className="text-xs font-bold text-[#f2c12e] uppercase tracking-widest">Real Payouts, Proven On-Chain</span>
             </div>
             <h2 className="text-4xl md:text-6xl font-black tracking-tight">
-              Upcoming <span className="text-[#f2c12e]">Winners</span>
+              <span className="text-[#f2c12e]">Winner</span>
             </h2>
             <p className="text-slate-400 mt-4 max-w-xl mx-auto text-base md:text-lg">
               No guesswork. Regular transparent cycles distributing funds instantly into bank accounts.
@@ -557,68 +530,45 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
           </div>
 
           <div className="relative min-h-[700px] flex items-center justify-center">
-            {winners.map((winner, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: 100 }}
-                animate={index === currentTestimonialIndex ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
-                transition={{ type: "spring", stiffness: 60, damping: 14, duration: 0.6 }}
-                className={`absolute w-full max-w-md ${index === currentTestimonialIndex ? "pointer-events-auto" : "pointer-events-none"}`}
-              >
-                <div className="group relative bg-[#040e24] border border-slate-800/80 rounded-[32px] p-4 flex flex-col justify-between overflow-hidden shadow-2xl transition-all duration-300 hover:border-slate-700 hover:shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
-                  <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden mb-5 bg-slate-900 shadow-md">
-                    <img src={winner.image} alt={winner.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#040e24] via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ type: "spring", stiffness: 60, damping: 14 }}
+              className="w-full max-w-md"
+            >
+              <div className="group relative bg-[#040e24] border border-slate-800/80 rounded-[32px] p-4 flex flex-col justify-between overflow-hidden shadow-2xl transition-all duration-300 hover:border-slate-700 hover:shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
+                <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden mb-5 bg-slate-900 shadow-md">
+                  <img src={winner.image} alt={winner.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#040e24] via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
 
-                    <div className="absolute top-3 left-3 right-3 flex justify-between items-center pointer-events-none">
-                      <span className="bg-[#02091d]/80 backdrop-blur-md border border-slate-700/50 text-white font-mono text-xs font-bold px-2.5 py-1 rounded-lg">{winner.cycle}</span>
-                      <span className="bg-emerald-500 text-black font-extrabold text-[10px] tracking-wider uppercase px-2 py-0.5 rounded shadow-sm flex items-center gap-1">
-                        <span className="w-1 h-1 rounded-full bg-black animate-ping" /> Disbursed
-                      </span>
-                    </div>
-
-                    <div className="absolute bottom-4 left-4 right-4 bg-gradient-to-r from-[#02091d]/90 to-[#041230]/90 border border-slate-700/50 backdrop-blur-lg p-3 rounded-xl flex items-center justify-between">
-                      <div>
-                        <h4 className="text-sm font-black text-white tracking-wide">{winner.name}</h4>
-                        <p className="text-[10px] text-slate-400 font-medium">{winner.location}</p>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-xs font-bold text-amber-400">{winner.month}</div>
-                        <div className="text-lg font-black text-[#f2c12e] font-mono leading-tight">{winner.amount}</div>
-                      </div>
-                    </div>
+                  <div className="absolute top-3 left-3 right-3 flex justify-between items-center pointer-events-none">
+                    <span className="bg-[#02091d]/80 backdrop-blur-md border border-slate-700/50 text-white font-mono text-xs font-bold px-2.5 py-1 rounded-lg">{winner.cycle}</span>
+                    <span className="bg-emerald-500 text-black font-extrabold text-[10px] tracking-wider uppercase px-2 py-0.5 rounded shadow-sm flex items-center gap-1">
+                      <span className="w-1 h-1 rounded-full bg-black animate-ping" /> Disbursed
+                    </span>
                   </div>
 
-                  <div className="px-2 pb-2 flex-grow flex flex-col justify-between">
-                    <div className="relative">
-                      <span className="absolute -top-3 -left-2 text-5xl font-serif font-black text-slate-800/40 select-none pointer-events-none">“</span>
-                      <p className="text-xs md:text-sm text-slate-300 leading-relaxed font-medium relative z-10 pl-4 italic">{winner.quote}</p>
-                    </div>
+                  
+                </div>
 
-                    <div className="mt-5 pt-3 border-t border-slate-900 flex items-center justify-between text-[11px] text-slate-500 font-mono">
-                      <span className="flex items-center gap-1 text-slate-400 font-semibold">
-                        <svg className="w-3.5 h-3.5 text-blue-400 fill-current" viewBox="0 0 24 24">
-                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                        </svg>
-                        KYC Verified Account
-                      </span>
-                      <span>TX_#8291A</span>
-                    </div>
+                <div className="px-2 pb-2 flex-grow flex flex-col justify-between">
+                  <div className="relative">
+                    <span className="absolute -top-3 -left-2 text-5xl font-serif font-black text-slate-800/40 select-none pointer-events-none">“</span>
+                    <p className="text-xs md:text-sm text-slate-300 leading-relaxed font-medium relative z-10 pl-4 italic">{winner.quote}</p>
+                  </div>
+
+                  <div className="mt-5 pt-3 border-t border-slate-900 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+                    <span className="flex items-center gap-1 text-slate-400 font-semibold">
+                      <svg className="w-3.5 h-3.5 text-blue-400 fill-current" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                      </svg>
+                      KYC Verified Account
+                    </span>
+                    <span>TX_#8291A</span>
                   </div>
                 </div>
-              </motion.div>
-            ))}
-
-            <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 flex items-center gap-2">
-              {winners.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentTestimonialIndex(index)}
-                  className={`h-2 rounded-full transition-all duration-300 ${index === currentTestimonialIndex ? "w-8 bg-[#f2c12e]" : "w-2 bg-slate-600 hover:bg-slate-500"}`}
-                  aria-label={`Go to testimonial ${index + 1}`}
-                />
-              ))}
-            </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

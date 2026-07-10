@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { supabase } from '../../lib/supabase';
-
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { supabase } from "../../lib/supabase";
 const url = window.location.href;
-const domain = new URL(url).hostname;
-const API = "http://"+domain+":3000";
+const { protocol, hostname } = new URL(url);
+
+const API = `${protocol}//${hostname}`;
 
 export default function AdminUsers() {
   const [users, setUsers] = useState([]);
@@ -21,14 +21,19 @@ export default function AdminUsers() {
   async function fetchUsers(pageNum) {
     setLoading(true);
     try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) throw new Error('Not authenticated');
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      if (!session) throw new Error("Not authenticated");
 
-      const res = await fetch(`${API}/api/admin/users?page=${pageNum}&limit=${limit}`, {
-        headers: { Authorization: `Bearer ${session.access_token}` },
-      });
+      const res = await fetch(
+        `${API}/api/admin/users?page=${pageNum}&limit=${limit}`,
+        {
+          headers: { Authorization: `Bearer ${session.access_token}` },
+        },
+      );
 
-      if (!res.ok) throw new Error('Failed to fetch users');
+      if (!res.ok) throw new Error("Failed to fetch users");
 
       const data = await res.json();
       setUsers(data.users);
@@ -86,16 +91,23 @@ export default function AdminUsers() {
                   </thead>
                   <tbody>
                     {users.map((u) => (
-                      <tr key={u.id} className="border-b border-white/5 text-white/80 text-sm hover:bg-white/5 transition-colors">
-                        <td className="p-4 font-medium">{u.name || '—'}</td>
+                      <tr
+                        key={u.id}
+                        className="border-b border-white/5 text-white/80 text-sm hover:bg-white/5 transition-colors"
+                      >
+                        <td className="p-4 font-medium">{u.name || "—"}</td>
                         <td className="p-4">{u.email}</td>
-                        <td className="p-4">{u.phone || '—'}</td>
+                        <td className="p-4">{u.phone || "—"}</td>
                         <td className="p-4">
-                          <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${u.role === 'ADMIN' ? 'bg-[#f9bb1a]/20 text-[#f9bb1a]' : 'bg-white/10 text-white/60'}`}>
+                          <span
+                            className={`text-xs font-bold px-2 py-0.5 rounded-full ${u.role === "ADMIN" ? "bg-[#f9bb1a]/20 text-[#f9bb1a]" : "bg-white/10 text-white/60"}`}
+                          >
                             {u.role}
                           </span>
                         </td>
-                        <td className="p-4 text-white/40">{new Date(u.created_at).toLocaleDateString()}</td>
+                        <td className="p-4 text-white/40">
+                          {new Date(u.created_at).toLocaleDateString()}
+                        </td>
                         <td className="p-4">
                           <Link
                             to={`/admin/users/${u.id}`}
@@ -108,7 +120,12 @@ export default function AdminUsers() {
                     ))}
                     {users.length === 0 && (
                       <tr>
-                        <td colSpan="6" className="p-8 text-center text-white/40">No users found.</td>
+                        <td
+                          colSpan="6"
+                          className="p-8 text-center text-white/40"
+                        >
+                          No users found.
+                        </td>
                       </tr>
                     )}
                   </tbody>
@@ -118,7 +135,8 @@ export default function AdminUsers() {
               {pagination && pagination.totalPages > 1 && (
                 <div className="flex items-center justify-between p-4 border-t border-white/10">
                   <p className="text-white/40 text-xs">
-                    Page {pagination.page} of {pagination.totalPages} ({pagination.total} total)
+                    Page {pagination.page} of {pagination.totalPages} (
+                    {pagination.total} total)
                   </p>
                   <div className="flex gap-2">
                     <button

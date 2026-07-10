@@ -6,9 +6,9 @@ import { supabase } from "../lib/supabase";
 import { useAuth } from "../context/AuthContext";
 
 const url = window.location.href;
-const domain = new URL(url).hostname;
+const { protocol, hostname } = new URL(url);
 
-const API = "http://"+domain+":3000"
+const API = `${protocol}//${hostname}`;
 
 const Login = () => {
   const navigate = useNavigate();

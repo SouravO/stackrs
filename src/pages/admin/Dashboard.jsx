@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { supabase } from '../../lib/supabase';
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { supabase } from "../../lib/supabase";
 
 const url = window.location.href;
-const domain = new URL(url).hostname;
-const API = "http://"+domain+":3000";
+const { protocol, hostname } = new URL(url);
+
+const API = `${protocol}//${hostname}`;
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState(null);
@@ -17,14 +18,16 @@ export default function AdminDashboard() {
 
   async function fetchStats() {
     try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) throw new Error('Not authenticated');
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      if (!session) throw new Error("Not authenticated");
 
       const res = await fetch(`${API}/api/admin/users?limit=5`, {
         headers: { Authorization: `Bearer ${session.access_token}` },
       });
 
-      if (!res.ok) throw new Error('Failed to fetch');
+      if (!res.ok) throw new Error("Failed to fetch");
 
       const data = await res.json();
       setStats(data);
@@ -60,22 +63,36 @@ export default function AdminDashboard() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="bg-[#121c31]/90 border border-white/10 rounded-2xl p-6">
-            <p className="text-white/40 text-xs font-bold uppercase tracking-widest mb-1">Total Users</p>
-            <p className="text-4xl font-black text-white">{stats?.pagination?.total ?? 0}</p>
+            <p className="text-white/40 text-xs font-bold uppercase tracking-widest mb-1">
+              Total Users
+            </p>
+            <p className="text-4xl font-black text-white">
+              {stats?.pagination?.total ?? 0}
+            </p>
           </div>
           <div className="bg-[#121c31]/90 border border-white/10 rounded-2xl p-6">
-            <p className="text-white/40 text-xs font-bold uppercase tracking-widest mb-1">Current Page</p>
-            <p className="text-4xl font-black text-white">{stats?.pagination?.page ?? 0}</p>
+            <p className="text-white/40 text-xs font-bold uppercase tracking-widest mb-1">
+              Current Page
+            </p>
+            <p className="text-4xl font-black text-white">
+              {stats?.pagination?.page ?? 0}
+            </p>
           </div>
           <div className="bg-[#121c31]/90 border border-white/10 rounded-2xl p-6">
-            <p className="text-white/40 text-xs font-bold uppercase tracking-widest mb-1">Per Page</p>
-            <p className="text-4xl font-black text-white">{stats?.pagination?.limit ?? 0}</p>
+            <p className="text-white/40 text-xs font-bold uppercase tracking-widest mb-1">
+              Per Page
+            </p>
+            <p className="text-4xl font-black text-white">
+              {stats?.pagination?.limit ?? 0}
+            </p>
           </div>
         </div>
 
         <div className="bg-[#121c31]/90 border border-white/10 rounded-2xl p-6">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-bold text-white uppercase tracking-wider">Recent Users</h2>
+            <h2 className="text-lg font-bold text-white uppercase tracking-wider">
+              Recent Users
+            </h2>
             <Link
               to="/admin/users"
               className="text-[#f9bb1a] text-xs font-bold uppercase tracking-widest hover:underline"
@@ -97,15 +114,22 @@ export default function AdminDashboard() {
                 </thead>
                 <tbody>
                   {stats.users.map((u) => (
-                    <tr key={u.id} className="border-b border-white/5 text-white/80 text-sm">
-                      <td className="py-3 pr-4">{u.name || '—'}</td>
+                    <tr
+                      key={u.id}
+                      className="border-b border-white/5 text-white/80 text-sm"
+                    >
+                      <td className="py-3 pr-4">{u.name || "—"}</td>
                       <td className="py-3 pr-4">{u.email}</td>
                       <td className="py-3 pr-4">
-                        <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${u.role === 'ADMIN' ? 'bg-[#f9bb1a]/20 text-[#f9bb1a]' : 'bg-white/10 text-white/60'}`}>
+                        <span
+                          className={`text-xs font-bold px-2 py-0.5 rounded-full ${u.role === "ADMIN" ? "bg-[#f9bb1a]/20 text-[#f9bb1a]" : "bg-white/10 text-white/60"}`}
+                        >
                           {u.role}
                         </span>
                       </td>
-                      <td className="py-3">{new Date(u.created_at).toLocaleDateString()}</td>
+                      <td className="py-3">
+                        {new Date(u.created_at).toLocaleDateString()}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
