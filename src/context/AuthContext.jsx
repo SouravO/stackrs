@@ -6,11 +6,9 @@ import {
   useCallback,
 } from "react";
 import { supabase } from "../lib/supabase";
+import { API } from "../variables/variables";
 
-const url = window.location.href;
-const { protocol, hostname } = new URL(url);
 
-const API = `${protocol}//${hostname}`;
 
 const AuthContext = createContext(null);
 

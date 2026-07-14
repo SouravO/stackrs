@@ -5,10 +5,7 @@ import { User, Mail, Phone, Lock, ArrowRight } from "lucide-react";
 import { supabase } from "../lib/supabase";
 import { useAuth } from "../context/AuthContext";
 
-const url = window.location.href;
-const { protocol, hostname } = new URL(url);
-
-const API = `${protocol}//${hostname}`;
+import { API } from "../variables/variables";
 
 const Login = () => {
   const navigate = useNavigate();

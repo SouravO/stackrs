@@ -2,10 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "../../lib/supabase";
 
-const url = window.location.href;
-const { protocol, hostname } = new URL(url);
-
-const API = `${protocol}//${hostname}`;
+import { API } from "../../variables/variables";
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState(null);
