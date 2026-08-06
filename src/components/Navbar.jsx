@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, User, Layers, Mail, Sparkles, LogIn, LogOut, Lock, Shield, Menu, X } from 'lucide-react';
+import { Home, User, Layers, Mail, Sparkles, LogIn, LogOut, Lock, Shield, Trophy, Menu, X } from 'lucide-react';
 
 const navItems = [
   { name: 'Home', path: '/', icon: Home, color: 'from-[#f9bb1a] to-[#ffda6a]', shadow: 'shadow-[#f9bb1a]/20' },
@@ -137,6 +137,18 @@ const VibrantTopNav = ({ isLightBg = false }) => {
                   <Shield size={20} />
                 </motion.div>
               </Link>
+              <Link
+                to="/admin/winner"
+                onMouseEnter={() => setHovered(null)}
+                className="relative z-10 w-14 h-11 flex flex-col items-center justify-center group"
+              >
+                <motion.div
+                  animate={{ color: location.pathname === '/admin/winner' ? '#f9bb1a' : 'rgba(255, 255, 255, 0.6)' }}
+                  className="flex items-center justify-center"
+                >
+                  <Trophy size={20} />
+                </motion.div>
+              </Link>
               <div className="w-[1px] h-6 rounded-full bg-white/10" />
             </>
           )}
@@ -251,14 +263,24 @@ const VibrantTopNav = ({ isLightBg = false }) => {
               ))}
 
               {user?.role === 'ADMIN' && (
-                <Link
-                  to="/admin/dashboard"
-                  onClick={closeMobile}
-                  className={navLinkClass('/admin/dashboard')}
-                >
-                  <Shield size={18} />
-                  Admin
-                </Link>
+                <>
+                  <Link
+                    to="/admin/dashboard"
+                    onClick={closeMobile}
+                    className={navLinkClass('/admin/dashboard')}
+                  >
+                    <Shield size={18} />
+                    Admin
+                  </Link>
+                  <Link
+                    to="/admin/winner"
+                    onClick={closeMobile}
+                    className={navLinkClass('/admin/winner')}
+                  >
+                    <Trophy size={18} />
+                    Winner
+                  </Link>
+                </>
               )}
 
               <div className="mt-4 pt-4 border-t border-white/10 flex flex-col gap-2">

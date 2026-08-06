@@ -15,6 +15,7 @@ import AdminRoute from './components/AdminRoute';
 import AdminDashboard from './pages/admin/Dashboard';
 import AdminUsers from './pages/admin/Users';
 import AdminUserDetail from './pages/admin/UserDetail';
+import AdminWinner from './pages/admin/Winner';
 
 function AppContent() {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -44,6 +45,7 @@ function AppContent() {
             <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
             <Route path="/admin/users" element={<AdminRoute><AdminUsers /></AdminRoute>} />
             <Route path="/admin/users/:id" element={<AdminRoute><AdminUserDetail /></AdminRoute>} />
+            <Route path="/admin/winner" element={<AdminRoute><AdminWinner /></AdminRoute>} />
           </Routes>
         </main>
         <Footer />

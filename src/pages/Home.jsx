@@ -8,6 +8,7 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import { useAuth } from "../context/AuthContext";
+import { supabase } from "../lib/supabase";
 
 export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
   const { user } = useAuth();
@@ -30,6 +31,7 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
     { id: "STK-7741-IN", status: "Paid", pool: "#092" },
     { id: "STK-3391-IN", status: "Paid", pool: "#091" },
   ]);
+  const [winnerImage, setWinnerImage] = useState("/winner2.jpeg");
 
   const { scrollY } = useScroll();
   const backgroundY = useTransform(scrollY, [0, 800], [0, 150]);
@@ -215,6 +217,19 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
     return () => clearInterval(interval);
   }, []);
 
+  // Fetch current winner image
+  useEffect(() => {
+    supabase
+      .from("winner_images")
+      .select("image_url")
+      .eq("is_current", true)
+      .single()
+      .then(({ data }) => {
+        if (data?.image_url) setWinnerImage(data.image_url);
+      })
+      .catch(() => {});
+  }, []);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -238,7 +253,7 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
     amount: "₹50,000",
     cycle: "Pool #001",
     month: "Month 1 Draw",
-    image: "/winner2.jpeg",
+    image: winnerImage,
     quote:
       "Stackr completely changed how I look at Savingss. Transparent, automatic, and I got my payout right when my business needed it.",
   };
@@ -753,6 +768,7 @@ export default function EnhancedHero({ onJoinClick, onWatchDrawClick }) {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#040e24] via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
 
                   <div className="absolute top-3 left-3 right-3 flex justify-between items-center pointer-events-none">
+                   
                    
                   </div>
                 </div>
